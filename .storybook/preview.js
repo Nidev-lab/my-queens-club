@@ -1,4 +1,5 @@
 import * as NextImage from "next/image";
+import '../styles/globals.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js'
 
