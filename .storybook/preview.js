@@ -1,4 +1,3 @@
-import '../styles/globals.css';
 import * as NextImage from "next/image";
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js'
@@ -11,6 +10,7 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  layout: 'fullscreen',
 }
 
 const OriginalNextImage = NextImage.default;
