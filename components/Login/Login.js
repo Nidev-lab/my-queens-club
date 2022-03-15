@@ -3,7 +3,6 @@ import styles from './login.module.css';
 
 const Login = () => {
   return (
-    <>
       <form className='bg-black'>
         <div className="input-group mb-3">
           <span className={`input-group-text ${styles.icon}`}><i className="bi bi-person"></i></span>
@@ -22,7 +21,6 @@ const Login = () => {
         </div>
         <button type="submit" className={`btn btn-primary w-100 ${styles.button}`}>ACCEDER</button>
       </form>
-    </>
   );
 };
 

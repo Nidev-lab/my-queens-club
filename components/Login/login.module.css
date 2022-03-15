@@ -1,8 +1,8 @@
 .icon{
-  color: #fe8ba1;
+  color: #cdab58;
   font-size: 20px;
   border-radius: 5px;
-  border-color: #e5b9c0;
+  border-color: #edc871;
 }
 .placeholder{
   background-color: #282828;
@@ -16,14 +16,14 @@
   box-shadow: none;
 }
 .button{
-  background-color: #b766a0;
+  background-color: #cdab58;
   border-radius: 5px;
-  border-color: #994c6e;
+  border-color: #edc871;
 }
 .button:hover{
-  background-color: #724c7d;
+  background-color: #b89640;
   border-radius: 5px;
-  border-color: #994c6e;
+  border-color: #edc871;
 }
 .password{
   text-decoration: none;
