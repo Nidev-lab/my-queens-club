@@ -1,8 +1,8 @@
 .icon{
-  color: #cdab58;
+  color: var(--primary-color);
   font-size: 20px;
   border-radius: 5px;
-  border-color: #edc871;
+  border-color: var(--primary-color);
 }
 .placeholder{
   background-color: #282828;
@@ -16,12 +16,12 @@
   box-shadow: none;
 }
 .button{
-  background-color: #cdab58;
+  background-color: var(--primary-color);
   border-radius: 5px;
-  border-color: #edc871;
+  border-color: var(--primary-color);
 }
 .button:hover{
-  background-color: #b89640;
+  background-color: var(--secondary-color);
   border-radius: 5px;
-  border-color: #edc871;
+  border-color: var(--secondary-color);
 }

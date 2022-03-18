@@ -1,8 +1,8 @@
 .icon{
-  color: #fe8ba1;
+  color: var(--primary-color);
   font-size: 20px;
   border-radius: 5px;
-  border-color: #e5b9c0;
+  border-color: var(--primary-color);
 }
 .placeholder{
   background-color: #282828;
@@ -16,14 +16,14 @@
   box-shadow: none;
 }
 .button{
-  background-color: #b766a0;
+  background-color: var(--primary-color);
   border-radius: 5px;
-  border-color: #994c6e;
+  border-color: var(--primary-color);
 }
 .button:hover{
-  background-color: #724c7d;
+  background-color: var(--secondary-color);
   border-radius: 5px;
-  border-color: #994c6e;
+  border-color: var(--secondary-color);
 }
 .password{
   text-decoration: none;
