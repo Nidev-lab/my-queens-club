@@ -2,7 +2,7 @@ import Image from 'next/image';
 import PropTypes from 'prop-types';
 import styles from './cardgallery.module.css';
 
-const CardHome = ({
+const CardGallery = ({
   src, title, alt, galleryName, imageQuantity,
 }) => {
   return (
@@ -20,7 +20,7 @@ const CardHome = ({
   );
 };
 
-CardHome.propTypes = {
+CardGallery.propTypes = {
   src: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
@@ -28,4 +28,4 @@ CardHome.propTypes = {
   imageQuantity: PropTypes.number.isRequired,
 };
 
-export default CardHome;
+export default CardGallery;

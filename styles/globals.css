@@ -24,3 +24,13 @@ a {
   padding: 0;
   margin: 0;
 }
+
+/* Swiper styles */
+
+.swiper-button-next:after, .swiper-button-prev:after{
+  font-size: 25px !important;
+}
+
+.swiper-button-next, .swiper-button-prev{
+  color: var(--primary-color) !important;
+}
