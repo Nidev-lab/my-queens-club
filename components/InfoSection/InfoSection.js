@@ -4,15 +4,19 @@ import ModalSingIn from '../ModalSingIn/ModalSingIn';
 import GeneralModal from '../GeneralModal/GeneralModal';
 
 import data from '../../data/faq.json';
+import CustomerSupport from '../CustomerSupport/CustomerSupport';
 
 const InfoSection = ({ className }) => {
   return (
     <div className={`container py-2 ${className}`}>
       <div className='row justify-content-between'>
-        <div className={`col-sm-2 col-md-6 col-lg-3 pb-lg-0 pb-5 d-flex flex-column justify-content-center align-items-center ${styles.box}`}>
+        <div className={`col-sm-2 col-md-6 col-lg-3 pb-lg-0 pb-5 d-flex flex-column justify-content-center align-items-center ${styles.box}`} data-bs-toggle="modal" data-bs-target='#customerSupport'>
           <i className={`bi bi-chat-square-text fs-1 ${styles.iconColor}`}></i>
           <span>ATENCIÓN AL CIENTE</span>
         </div>
+        <GeneralModal id='customerSupport'>
+          <CustomerSupport />
+        </GeneralModal>
         <div className={`col-sm-12 col-md-6 col-lg-3 pb-lg-0 pb-5 d-flex flex-column justify-content-center align-items-center ${styles.box}`}>
           <i className={`bi bi-credit-card-2-back fs-1 ${styles.iconColor}`}></i>
           <span>MEDIOS DE PAGO</span>

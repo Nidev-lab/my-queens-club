@@ -26,6 +26,7 @@
     "react-dom": "17.0.2",
     "react-hook-form": "^7.30.0",
     "sharp": "^0.30.3",
+    "sweetalert2": "^11.4.14",
     "swiper": "^8.0.7"
   },
   "devDependencies": {
