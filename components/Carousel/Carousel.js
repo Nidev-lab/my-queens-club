@@ -2,25 +2,25 @@ import Image from 'next/image';
 import PropTypes from 'prop-types';
 import styles from './carousel.module.css';
 
-const Carousel = ({ carouselInfo, carouselInfoMobile }) => {
+const Carousel = ({ data }) => {
   return (
     <>
       <div id="carouselIndicators" className="carousel slide d-none d-md-block" data-bs-ride="carousel">
         <div className="carousel-indicators">
           {
-            carouselInfo.map((info, index) => (
-              <button type="button" key={info.alt} data-bs-target="#carouselIndicators" data-bs-slide-to={index} className={index === 0 ? 'active' : undefined} aria-current="true" aria-label={`Slide ${index + 1}`} />
+            data.map((info, index) => (
+              <button type="button" key={index} data-bs-target="#carouselIndicators" data-bs-slide-to={index} className={index === 0 ? 'active' : undefined} aria-current="true" aria-label={`Slide ${index + 1}`} />
             ))
           }
         </div>
         <div className="carousel-inner">
           {
-            carouselInfo.map((info, index) => (
-              <div className={`carousel-item ${index === 0 ? 'active' : undefined}`} key={info.alt}>
+            data.map((info, index) => (
+              <div className={`carousel-item ${index === 0 ? 'active' : undefined}`} key={index}>
                 <div className='vw-100 h-100 position-absolute d-flex justify-content-center align-items-center text-uppercase'>
-                  <h3 className={styles.title}>{info.title}</h3>
+                  <h3 className={styles.title}>{info.nameQueen}</h3>
                 </div>
-                <Image src={info.src} width={1636} height={960} layout="responsive" alt={info.alt} />
+                <Image src={info.coverImageDesktop} width={1636} height={960} layout="responsive" alt={info.nameQueen} />
               </div>
             ))
           }
@@ -38,19 +38,19 @@ const Carousel = ({ carouselInfo, carouselInfoMobile }) => {
       <div id="carouselIndicatorsMobile" className="carousel slide d-block d-md-none" data-bs-ride="carousel">
         <div className="carousel-indicators">
           {
-            carouselInfoMobile.map((info, index) => (
+            data.map((info, index) => (
               <button type="button" key={index} data-bs-target="#carouselIndicatorsMobile" data-bs-slide-to={index} className={index === 0 ? 'active' : undefined} aria-current="true" aria-label={`Slide ${index + 1}`} />
             ))
           }
         </div>
         <div className="carousel-inner">
           {
-            carouselInfoMobile.map((info, index) => (
+            data.map((info, index) => (
               <div className={`carousel-item ${index === 0 ? 'active' : undefined}`} key={index}>
                 <div className='vw-100 h-100 position-absolute d-flex justify-content-center align-items-center text-uppercase'>
-                  <h5 className={styles.title}>{info.title}</h5>
+                  <h5 className={styles.title}>{info.nameQueen}</h5>
                 </div>
-                <Image src={info.src} width={200} height={300} layout="responsive" alt={info.alt} />
+                <Image src={info.coverImageMobile} width={200} height={300} layout="responsive" alt={info.nameQueen} />
               </div>
             ))
           }
@@ -69,8 +69,7 @@ const Carousel = ({ carouselInfo, carouselInfoMobile }) => {
 };
 
 Carousel.propTypes = {
-  carouselInfo: PropTypes.array.isRequired,
-  carouselInfoMobile: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired,
 };
 
 export default Carousel;

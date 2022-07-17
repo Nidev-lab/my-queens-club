@@ -2,12 +2,9 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import CardCarousel from '../CardCarousel/CardCarousel';
 import styles from './tab.module.css';
-import carouselGalleryData from '../../data/galleries.example.json';
-import carouselQueenData from '../../data/queens.example.json';
 
-const Tab = ({ className }) => {
+const Tab = ({ className, queens, galleries }) => {
   const [activeTab, setActiveTab] = useState(2);
-
   return (
     <>
       <ul className={`row gx-0 nav mb-3 ${styles['nav-pills']} ${className}`} id="pills-tab" role="tablist">
@@ -46,11 +43,11 @@ const Tab = ({ className }) => {
       </ul>
       <div className="tab-content" id="pills-tabContent">
         <div className="tab-pane fade" id="pills-galerias" role="tabpanel" aria-labelledby="pills-galerias-tab">
-          <CardCarousel carouselInfo={carouselGalleryData} gallery={4} />
+          <CardCarousel carouselInfo={galleries} gallery={4} />
         </div>
 
         <div className="tab-pane fade show active" id="pills-queens" role="tabpanel" aria-labelledby="pills-queens-tab">
-          <CardCarousel carouselInfo={carouselQueenData} queen={5} />
+          <CardCarousel carouselInfo={queens} queen={5} />
         </div>
 
         <div className="tab-pane fade" id="pills-films" role="tabpanel"
@@ -65,6 +62,8 @@ const Tab = ({ className }) => {
 };
 
 Tab.propTypes = {
+  queens: PropTypes.array.isRequired,
+  galleries: PropTypes.array.isRequired,
   className: PropTypes.string,
 };
 

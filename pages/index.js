@@ -1,16 +1,15 @@
 import Head from 'next/head';
+import PropTypes from 'prop-types';
 import Carousel from '../components/Carousel/Carousel';
 import Footer from '../components/Footer/Footer';
 import Tab from '../components/Tab/Tab';
-import carouselInfo from '../components/Carousel/carouselData.example.json';
-import carouselInfoMobile from '../components/Carousel/carouselDataMobile.example.json';
 
 import styles from '../styles/Home.module.css';
 import InfoSection from '../components/InfoSection/InfoSection';
 import ModalSingIn from '../components/ModalSingIn/ModalSingIn';
 import InfoSubs from '../components/InfoSubs/InfoSubs';
 
-const Home = () => {
+const Home = ({ carouselData, queens, galleries }) => {
   return (
     <div className={styles.bgHome}>
       <Head>
@@ -21,12 +20,12 @@ const Home = () => {
 
       <header>
         <ModalSingIn idModal='singIn'/>
-        <Carousel carouselInfo={carouselInfo} carouselInfoMobile={carouselInfoMobile} />
+        <Carousel data={carouselData} />
       </header>
 
       <main className='mb-5'>
         <InfoSubs className='my-5' />
-        <Tab />
+        <Tab queens={queens} galleries={galleries} />
         <InfoSection className="my-5" />
       </main>
 
@@ -36,12 +35,26 @@ const Home = () => {
 };
 
 export async function getStaticProps() {
-  const res = await fetch('https://jsonplaceholder.typicode.com/todos/1');
-  const data = await res.json();
+  const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
+
+  const resCarousel = await fetch(`${urlbase}/carousel`);
+  const carouselData = await resCarousel.json();
+
+  const resQueen = await fetch(`${urlbase}/queen`);
+  const queens = await resQueen.json();
+
+  const resGalleries = await fetch(`${urlbase}/galleries`);
+  const galleries = await resGalleries.json();
 
   return {
-    props: { data },
+    props: { carouselData, queens, galleries },
   };
 }
+
+Home.propTypes = {
+  carouselData: PropTypes.array.isRequired,
+  queens: PropTypes.array.isRequired,
+  galleries: PropTypes.array.isRequired,
+};
 
 export default Home;

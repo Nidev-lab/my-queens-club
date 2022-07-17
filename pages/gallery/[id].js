@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
@@ -5,13 +6,8 @@ import Footer from '../../components/Footer/Footer';
 import ModalSingIn from '../../components/ModalSingIn/ModalSingIn';
 
 import styles from '../../styles/Galleries.module.css';
-import data from '../../data/gallery.example.json';
 
-const Gallery = ({
-  gallery: {
-    galleryName, queenName, images, price, imageQuantity,
-  },
-}) => {
+const Gallery = ({ gallery }) => {
   return (
     <div className={styles.bgHome}>
       <Head>
@@ -24,21 +20,21 @@ const Gallery = ({
         <ModalSingIn idModal='singIn' />
         <ModalSingIn idModal='singInBuy' isLogin />
         <div className='pt-5 pb-4'>
-          <h6 className={`text-uppercase fw-bolder text-center ${styles.title}`}>{galleryName}</h6>
-          <h6 className={`fw-bolder text-center mb-4 ${styles.subTitle}`}>Galería de fotos de {queenName}</h6>
+          <h6 className={`text-uppercase fw-bolder text-center ${styles.title}`}>{gallery?.galleryName}</h6>
+          <h6 className={`fw-bolder text-center mb-4 ${styles.subTitle}`}>Galería de fotos de {gallery?.nameQueen}</h6>
         </div>
       </header>
 
       <main className='mb-5 container-fluid'>
         <section className='row gx-0'>
           {
-            images.map((src, i) => (
+            gallery?.photos?.map((src, i) => (
               <div key={i} className="mb-3 position-relative d-flex justify-content-center">
                 <Image src={src} alt={src} width={1322} height={1920}/>
-                <div className={`w-100 position-absolute top-50 start-50 translate-middle text-center ${styles.textColor} ${i !== (images.length - 1) ? 'visually-hidden' : null}`}>
+                <div className={`w-100 position-absolute top-50 start-50 translate-middle text-center ${styles.textColor} ${i !== (gallery.photos.length - 1) ? 'visually-hidden' : null}`}>
                   <h4 className={`fw-bold text-uppercase mb-4 ${styles.contentTitle}`}>Contenido restringido</h4>
                   <p>
-                    Para ver las {imageQuantity} fotos sin censura,
+                    Para ver las {gallery.photos.length} fotos sin censura,
                     <br />
                      hacé click en el botón de abajo
                   </p>
@@ -46,7 +42,7 @@ const Gallery = ({
                     <button className={`px-5 btn ${styles.button}`}>Suscríbete</button>
                   </div>
                   <p>
-                    <em>Precio final de la galería AR${price}</em>
+                    <em>Precio final de la galería AR${gallery?.price}</em>
                   </p>
                   <p>Si ya tenes una suscripción a esta galería,
                   inicia sesión para poder visualizarla. </p>
@@ -65,18 +61,27 @@ const Gallery = ({
   );
 };
 
-export const getStaticPaths = async () => {
-  return {
-    paths: [
-      { params: { id: data.id } },
-    ],
-    fallback: false,
-  };
-};
+export async function getStaticPaths() {
+  const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
 
-export const getStaticProps = async () => {
+  const res = await fetch(`${urlbase}/galleries`);
+  const posts = await res.json();
+
+  const paths = posts.map((post) => ({
+    params: { id: post._id },
+  }));
+
+  return { paths, fallback: false };
+}
+
+export const getStaticProps = async ({ params }) => {
+  const urlbase = process.env.NEXT_PUBLIC_URL_BASE;
+
+  const res = await fetch(`${urlbase}/galleries/${params.id}`);
+  const gallery = await res.json();
+
   return {
-    props: { gallery: data },
+    props: { gallery },
   };
 };
 

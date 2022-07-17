@@ -29,13 +29,15 @@ const Register = () => {
       },
     });
     const json = await resp.json();
-    console.log(json);
+
     if (json.email) {
       setValidEmail(json.email);
     }
+
     if (json.userName) {
       setValidUserName(json.userName);
     }
+
     if (json.status === 200) {
       router.push('/login');
     }
